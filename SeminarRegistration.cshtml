@@ -1,0 +1,54 @@
+﻿@model Seminar
+@{
+    ViewData["Title"] = "SeminarRegistration";
+}
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<h1>SeminarRegistration</h1>
+
+<form asp-controller="Home" asp-action="SuccessfullForm" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <table>
+        <tr>
+            <th>Name</th>
+            <td>
+                <input type="text" asp-for="Name"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>
+                <input type="text" asp-for="Email"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <th>PhoneNo</th>
+            <td>
+                <input type="text" asp-for="PhoneNo"/>
+                <span asp-validation-for="PhoneNo" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <th>Confirmation</th>
+            <td>
+                @* <select name="confirmation" class="form-control" asp-items="@ViewBag.List"></select>*@
+                 <select id="drpEmpList" class="form-control" asp-for="Confirmation" asp-items="@(new SelectList(ViewBag.List, "Value", "Text"))">  
+                    <option value="">--Select--</option>  
+                </select>  
+                <span asp-validation-for="Confirmation" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit"/>
+            </td>
+        </tr>
+    </table>
+</form>
